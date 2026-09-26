@@ -52,7 +52,7 @@ st.markdown("""
 st.sidebar.markdown("## 📊 Strategic Command Center")
 st.sidebar.markdown("Operational control panel for evaluating regional corporate metrics.")
 
-# Unpacking remaining 4 tabs cleanly
+# Clean 4-tab rollout without LVMH
 tab1, tab2, tab3, tab4 = st.tabs([
     "🌐 Executive Overview", 
     "📦 Amazon UK", 
@@ -144,7 +144,6 @@ with tab3:
         device_price = st.number_input("Device Retail Price (USD $)", min_value=100, value=1200, step=50, key="sam_price")
         
     with col2:
-        # Calculate Bounded ROI Cap Metric
         engaged_audience = follower_count * (engagement_rate / 100)
         expected_buyers = engaged_audience * 0.045
         max_payout = (expected_buyers * device_price) * 0.15

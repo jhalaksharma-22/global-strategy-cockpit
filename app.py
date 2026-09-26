@@ -149,33 +149,28 @@ with tab4:
     st.markdown("""
     <div class="tab-green">
         <div class="tab-title">Spotify Premium Global</div>
-        <div class="tab-subtitle">Subscription Churn Risk Tracker</div>
+        <div class="tab-subtitle">Subscription Churn Risk Tracker & Revenue Protection</div>
     </div>
     """, unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
     
-    st.markdown("### ⚙️ Churn Risk & Revenue Impact Equations")
-    st.markdown('<p class="section-desc">Monitors user contraction velocities and evaluates Customer Lifetime Value stability.</p>', unsafe_allow_html=True)
-    st.markdown('<div class="formula-box"><b>Equation 1:</b> Customer Lifetime Value (LTV) = Average Revenue Per User (ARPU) / Churn Rate %<br><b>Equation 2:</b> Projected Monthly Revenue Loss = Monthly Recurring Revenue (MRR) × Churn Rate %</div>', unsafe_allow_html=True)
+    st.markdown("### ⚙️ Churn Risk Matrix Calculation")
+    st.markdown('<p class="section-desc">Monitors average platform listening engagement patterns to predict cancellation risks early.</p>', unsafe_allow_html=True)
+    st.markdown('<div class="formula-box"><b>Risk Standard:</b> Users streaming less than 10 hours a month are flagged at High Churn Risk. Retaining a high-risk subscriber via a promotional trigger protects MRR.</div>', unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
     with col1:
-        mrr = st.number_input("Current Monthly Recurring Revenue (MRR, USD $)", min_value=10000, value=5000000, step=100000, key="spot_mrr")
-        arpu = st.number_input("Average Revenue Per User (Monthly, USD $)", min_value=1.0, value=10.99, step=0.5, key="spot_arpu")
-        churn_rate = st.slider("Observed Monthly Churn Rate (%)", 0.5, 10.0, 2.4, step=0.1, key="spot_churn")
+        monthly_subs = st.number_input("Total Active Premium Subscribers", min_value=1000, value=1500000, step=50000, key="spot_subs")
+        avg_stream_hours = st.slider("Average Monthly Listening Duration (Hours)", 0, 60, 14, key="spot_hours")
+        arpu = st.number_input("Average Revenue Per User (Monthly, USD $)", min_value=1.0, value=10.99, step=0.50, key="spot_arpu")
         
     with col2:
-        # Avoid division by zero by setting a floor condition
-        calculated_churn_fraction = max(churn_rate / 100, 0.005)
-        ltv = arpu / calculated_churn_fraction
-        revenue_loss = mrr * (churn_rate / 100)
-        
-        st.markdown("### 🛡️ Retention Health Metrics")
-        
-        c1, c2 = st.columns(2)
-        with c1:
-            st.metric(label="Estimated Customer LTV (USD)", value=f"${ltv:,.2f}")
-        with c2:
-            st.metric(label="Projected Monthly Revenue Runoff (USD)", value=f"${revenue_loss:,.2f}")
-            
-        if churn_rate > 4.0:
+        total_monthly_revenue = monthly_subs * arpu
+        if avg_stream_hours < 10:
+            st.error("🚨 **CRITICAL CHURN RISK LEVEL:** Global listening metric has dipped below the critical engagement floor. Automated retention offers should be triggered.")
+            at_risk_pct = 45.0
+        elif 10 <= avg_stream_hours <= 20:
+            st.warning("⚠️ **ELEVATED MONITORING:** Listening metrics indicate borderline fatigue. Recommend surface playlist notifications.")
+            at_risk_pct = 15.0
+        else:
+            st.success("✅ **OPTIMAL RETENTION STATUS:** Strong recurring platform engagement metrics.")

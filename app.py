@@ -9,7 +9,7 @@ st.markdown("""
 <style>
     .stApp { background-color: #FFFFFF; }
     div[data-baseweb="slider"] [role="slider"] { background-color: #D81B60 !important; }
-    div[data-baseweb="slider"] [aria-valuenow"] { background-color: #D81B60 !important; }
+    div[data-baseweb="slider"] [aria-valuenow] { background-color: #D81B60 !important; }
     div[data-testid="stMetricValue"] { color: #111111 !important; font-weight: 700; }
     .metric-card {
         background: #F8F9FA;
@@ -154,9 +154,9 @@ with tab4:
     """, unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
     
-    st.markdown("### ⚙️ How Churn Revenue Exposure is Calculated")
-    st.markdown('<p class="section-desc">Monitors average platform listening engagement patterns to calculate financial downside risk.</p>', unsafe_allow_html=True)
-    st.markdown('<div class="formula-box"><b>Step 1:</b> Total Monthly Revenue = Active Subscribers × Monthly ARPU<br><b>Step 2:</b> Risk Factor = Less than 10 hrs &rarr; 45% Risk | 10 to 20 hrs &rarr; 15% Risk | Over 20 hrs &rarr; 4% Risk<br><b>Step 3:</b> Churn Revenue Exposure = Total Monthly Revenue × Risk Factor</div>', unsafe_allow_html=True)
+    st.markdown("### ⚙️ Churn Risk Matrix Calculation")
+    st.markdown('<p class="section-desc">Monitors average platform listening engagement patterns to predict cancellation risks early.</p>', unsafe_allow_html=True)
+    st.markdown('<div class="formula-box"><b>Risk Standard:</b> Users streaming less than 10 hours a month are flagged at High Churn Risk. Retaining a high-risk subscriber via a promotional trigger protects MRR.</div>', unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
     with col1:
@@ -173,3 +173,4 @@ with tab4:
             st.warning("⚠️ **ELEVATED MONITORING:** Listening metrics indicate borderline fatigue. Recommend surface playlist notifications.")
             at_risk_pct = 15.0
         else:
+            st.success("✅ **OPTIMAL RETENTION STATUS:** Strong recurring platform engagement metrics.")

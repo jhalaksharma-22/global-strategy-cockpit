@@ -52,7 +52,7 @@ st.markdown("""
 st.sidebar.markdown("## 📊 Strategic Command Center")
 st.sidebar.markdown("Operational control panel for evaluating regional corporate metrics.")
 
-# Unpacking the 4 remaining enterprise domains cleanly
+# Unpacking remaining 4 tabs cleanly
 tab1, tab2, tab3, tab4 = st.tabs([
     "🌐 Executive Overview", 
     "📦 Amazon UK", 
@@ -61,7 +61,7 @@ tab1, tab2, tab3, tab4 = st.tabs([
 ])
 
 # ==============================================================================
-# TAB 1: EXECUTIVE OVERVIEW (REAL REVENUE BOUNDED MATRIX)
+# TAB 1: EXECUTIVE OVERVIEW
 # ==============================================================================
 with tab1:
     st.markdown("""
@@ -88,7 +88,7 @@ with tab1:
         st.info("💡 **Analytical Standardization Rule:** All financial variables, input vectors, and margin evaluations across this cockpit are dynamically calculated in **USD ($)** to isolate operational performance from multi-currency FX exposure.")
 
 # ==============================================================================
-# TAB 2: AMAZON UK (GROUNDED BY MATURE SELLER DYNAMICS)
+# TAB 2: AMAZON UK
 # ==============================================================================
 with tab2:
     st.markdown("""
@@ -105,8 +105,7 @@ with tab2:
     
     col1, col2 = st.columns(2)
     with col1:
-        # Grounded value matching aggregated portfolio allocations for prominent UK marketplace brands (~281,000 active UK base)
-        base_ad_spend = st.number_input("Baseline Allocated Digital Ad Spend (Weekly, USD $)", min_value=1000, value=125000, step=5000, key="amzn_spend")
+        base_ad_spend = st.number_input("Baseline Allocated Digital Ad Spend (Weekly, USD $)", min_value=1000, value=50000, step=5000, key="amzn_spend")
         inventory_level = st.slider("Warehouse Stock Availability Level (%)", 0, 100, 35, key="amzn_inv")
         
     with col2:
@@ -123,7 +122,7 @@ with tab2:
         st.metric(label="Final Executable Ad Outlay (USD)", value=f"${int(adjusted_spend):,}")
 
 # ==============================================================================
-# TAB 3: SAMSUNG APAC (REAL MACRO INFLUENCER CAPITAL ROSTER)
+# TAB 3: SAMSUNG APAC
 # ==============================================================================
 with tab3:
     st.markdown("""
@@ -140,23 +139,22 @@ with tab3:
     
     col1, col2 = st.columns(2)
     with col1:
-        # Structured for typical high-tier local campaigns (e.g. Samsung India/APAC tech rosters)
-        follower_count = st.number_input("Influencer Total Follower Count", min_value=1000, value=850000, step=50000, key="sam_followers")
-        engagement_rate = st.slider("Engagement Rate (%)", 0.5, 15.0, 4.1, step=0.1, key="sam_eng")
-        device_price = st.number_input("Device Retail Price (USD $)", min_value=100, value=1199, step=50, key="sam_price")
+        follower_count = st.number_input("Influencer Total Follower Count", min_value=1000, value=250000, step=10000, key="sam_followers")
+        engagement_rate = st.slider("Engagement Rate (%)", 0.5, 15.0, 3.2, step=0.1, key="sam_eng")
+        device_price = st.number_input("Device Retail Price (USD $)", min_value=100, value=1200, step=50, key="sam_price")
         
     with col2:
-        # Calculate Real Bounded ROI Cap Metric
+        # Calculate Bounded ROI Cap Metric
         engaged_audience = follower_count * (engagement_rate / 100)
         expected_buyers = engaged_audience * 0.045
         max_payout = (expected_buyers * device_price) * 0.15
         
         st.markdown("### 💰 Budget Limit Allocation Result")
         st.metric(label="Maximum Allowed Influencer Contract Payout (USD)", value=f"${max_payout:,.2f}")
-        st.info(f"📈 **Projections Summary:** This influencer is expected to reach {int(engaged_audience):?} active users, driving roughly {int(expected_buyers):?} baseline hardware conversions.")
+        st.info(f"📈 **Projections Summary:** This influencer is expected to reach {int(engaged_audience):,} active users, driving roughly {int(expected_buyers):,} baseline hardware conversions.")
 
 # ==============================================================================
-# TAB 4: SPOTIFY GLOBAL (REAL HISTORICAL H2 2026 BENCHMARKS)
+# TAB 4: SPOTIFY GLOBAL
 # ==============================================================================
 with tab4:
     st.markdown("""
@@ -173,5 +171,14 @@ with tab4:
     
     col1, col2 = st.columns(2)
     with col1:
-        # Real Q2 2026 Metric: Spotify officially scaled to 300,000,000 paying premium subscribers globally.
-        monthly_subs = st.number_input("Total Active Premium Subscribers (Global)", min_value=1000000, value=300000000, step=1000000, key="spot_subs")
+        monthly_subs = st.number_input("Total Active Premium Subscribers", min_value=1000, value=1500000, step=50000, key="spot_subs")
+        avg_stream_hours = st.slider("Average Monthly Listening Duration (Hours)", 0, 60, 14, key="spot_hours")
+        arpu = st.number_input("Average Revenue Per User (Monthly, USD $)", min_value=1.0, value=10.99, step=0.50, key="spot_arpu")
+        
+    with col2:
+        total_monthly_revenue = monthly_subs * arpu
+        
+        if avg_stream_hours < 10:
+            st.error("🚨 **CRITICAL CHURN RISK LEVEL:** Global listening metric has dipped below the critical engagement floor. Automated retention offers should be triggered.")
+            at_risk_pct = 45.0
+        elif 10 <= avg_stream_hours <= 20:

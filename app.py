@@ -44,11 +44,11 @@ st.markdown("""
 st.sidebar.markdown("## 📊 Strategic Command Center")
 st.sidebar.markdown("Operational control panel for evaluating regional corporate metrics.")
 
-# Clean 4-tab rollout with selected dark briefcase, clapperboard, and music note icons
+# Clean 4-tab rollout without LVMH
 tab1, tab2, tab3, tab4 = st.tabs([
     "🌍 Executive Overview", 
     "📦 Amazon UK", 
-    "🎬 Samsung Smartphone APAC", 
+    "🎬 Samsung APAC", 
     "🎵 Spotify Global"
 ])
 
@@ -148,26 +148,4 @@ with tab3:
 with tab4:
     st.markdown("""
     <div class="tab-green">
-        <div class="tab-title">Spotify Premium Global</div>
-        <div class="tab-subtitle">Subscription Churn Risk Tracker & Revenue Protection</div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-    
-    # --- UPDATED NOTES FORMAT EXPLANATION DIRECTLY IMITATING THE SAMSUNG TIER STRUCTURE ---
-    st.markdown("### ⚙️ How Churn Revenue Exposure is Decided")
-    st.markdown('<p class="section-desc">Monitors average streaming behaviors to quantify immediate subscriber financial downside risks early.</p>', unsafe_allow_html=True)
-    st.markdown('<div class="formula-box"><b>Step 1:</b> Total Monthly Revenue = Active Subscribers × Monthly ARPU Plan Outlay<br><b>Step 2:</b> Risk Assessment Matrix &rarr; Under 10 hrs = 45% Risk | 10 to 20 hrs = 15% Risk | Over 20 hrs = 4% Risk<br><b>Step 3:</b> Total Revenue Exposure = Total Monthly Revenue × Conditional Churn Risk Factor</div>', unsafe_allow_html=True)
-    
-    col1, col2 = st.columns(2)
-    with col1:
-        monthly_subs = st.number_input("Total Active Premium Subscribers", min_value=1000, value=1500000, step=50000, key="spot_subs")
-        avg_stream_hours = st.slider("Average Monthly Listening Duration (Hours)", 0, 60, 14, key="spot_hours")
-        arpu = st.number_input("Average Revenue Per User (Monthly, USD $)", min_value=1.0, value=10.99, step=0.50, key="spot_arpu")
-        
-    with col2:
-        total_monthly_revenue = monthly_subs * arpu
-        if avg_stream_hours < 10:
-            st.error("🚨 **CRITICAL CHURN RISK LEVEL:** Global listening metric has dipped below the critical engagement floor. Automated retention offers should be triggered.")
-            at_risk_pct = 45.0
-        elif 10 <= avg_stream_hours <= 20:
+        <div class="tab-

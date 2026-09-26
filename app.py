@@ -44,11 +44,11 @@ st.markdown("""
 st.sidebar.markdown("## 📊 Strategic Command Center")
 st.sidebar.markdown("Operational control panel for evaluating regional corporate metrics.")
 
-# Clean 4-tab rollout without LVMH
+# Clean 4-tab rollout with selected dark briefcase, clapperboard, and music note icons
 tab1, tab2, tab3, tab4 = st.tabs([
     "🌍 Executive Overview", 
     "📦 Amazon UK", 
-    "🎬 Samsung APAC", 
+    "🎬 Samsung Smartphone APAC", 
     "🎵 Spotify Global"
 ])
 
@@ -154,9 +154,10 @@ with tab4:
     """, unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
     
-    st.markdown("### ⚙️ Churn Risk Matrix Calculation")
-    st.markdown('<p class="section-desc">Monitors average platform listening engagement patterns to predict cancellation risks early.</p>', unsafe_allow_html=True)
-    st.markdown('<div class="formula-box"><b>Risk Standard:</b> Users streaming less than 10 hours a month are flagged at High Churn Risk. Retaining a high-risk subscriber via a promotional trigger protects MRR.</div>', unsafe_allow_html=True)
+    # --- UPDATED NOTES FORMAT EXPLANATION DIRECTLY IMITATING THE SAMSUNG TIER STRUCTURE ---
+    st.markdown("### ⚙️ How Churn Revenue Exposure is Decided")
+    st.markdown('<p class="section-desc">Monitors average streaming behaviors to quantify immediate subscriber financial downside risks early.</p>', unsafe_allow_html=True)
+    st.markdown('<div class="formula-box"><b>Step 1:</b> Total Monthly Revenue = Active Subscribers × Monthly ARPU Plan Outlay<br><b>Step 2:</b> Risk Assessment Matrix &rarr; Under 10 hrs = 45% Risk | 10 to 20 hrs = 15% Risk | Over 20 hrs = 4% Risk<br><b>Step 3:</b> Total Revenue Exposure = Total Monthly Revenue × Conditional Churn Risk Factor</div>', unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
     with col1:
@@ -170,7 +171,3 @@ with tab4:
             st.error("🚨 **CRITICAL CHURN RISK LEVEL:** Global listening metric has dipped below the critical engagement floor. Automated retention offers should be triggered.")
             at_risk_pct = 45.0
         elif 10 <= avg_stream_hours <= 20:
-            st.warning("⚠️ **ELEVATED MONITORING:** Listening metrics indicate borderline fatigue. Recommend surface playlist notifications.")
-            at_risk_pct = 15.0
-        else:
-            st.success("✅ **OPTIMAL RETENTION STATUS:** Strong recurring platform engagement metrics.")

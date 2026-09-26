@@ -9,7 +9,7 @@ st.markdown("""
 <style>
     .stApp { background-color: #FFFFFF; }
     div[data-baseweb="slider"] [role="slider"] { background-color: #D81B60 !important; }
-    div[data-baseweb="slider"] [aria-valuenow] { background-color: #D81B60 !important; }
+    div[data-baseweb="slider"] [aria-valuenow"] { background-color: #D81B60 !important; }
     div[data-testid="stMetricValue"] { color: #111111 !important; font-weight: 700; }
     .metric-card {
         background: #F8F9FA;

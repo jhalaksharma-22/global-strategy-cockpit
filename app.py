@@ -46,10 +46,10 @@ st.sidebar.markdown("Operational control panel for evaluating regional corporate
 
 # Clean 4-tab rollout without LVMH
 tab1, tab2, tab3, tab4 = st.tabs([
-    "🌐 Executive Overview", 
+    "🌍 Executive Overview", 
     "📦 Amazon UK", 
-    "🇰🇷 Samsung APAC", 
-    "🎧 Spotify Global"
+    "🎬 Samsung APAC", 
+    "🎵 Spotify Global"
 ])
 
 # ==============================================================================
